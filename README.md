@@ -34,11 +34,13 @@ The dataset used for training and evaluation is ACDC Dataset (Adverse Conditions
   
 In addition to **image pre-processing** operations performed to adapt the images for the model, **data augmentation was also applied due to the limited size of the dataset**. Specifically, the augmentation techniques used were: **Horizontal Flip** and **Random Brightness/Contrast**.
 
-**Suggested image for this section:**  
-Insert a sample image showing a few annotated waste items (bounding boxes + class labels). You can capture it from Roboflow or your training samples.
+<p>
+     <img src="images/DatasetExample1.png" width="40%" />
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+     <img src="images/DatasetExample2.png" width="40%" />
+</p>
 
 ---
-
 ## 🧠 Model Architecture
 
 The system is based on **Faster R-CNN ResNet50** PyTorch Model ([PyTorch doc link:](https://docs.pytorch.org/vision/main/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html)). The model offers:
@@ -51,9 +53,6 @@ The system is based on **Faster R-CNN ResNet50** PyTorch Model ([PyTorch doc lin
    - **boxes (FloatTensor[N, 4]):** the predicted boxes in [x1, y1, x2, y2] format
    - **labels (Int64Tensor[N]):** the predicted labels for each detection
    - **scores (Tensor[N]):** the scores of each detection
-
-> Training was performed using `yolo task=detect mode=train` with various hyperparameters optimized for our dataset.
-> 
 ---
 
 ## 🏋️ Training Process
@@ -64,6 +63,7 @@ Key training parameters:
 - Image size: 800x800
 - Optimizer: SGD
 - Loss: Objectness + Classification + Bounding Box Classification
+  
 ---
 
 ## 📊 Evaluation and Results
@@ -71,6 +71,13 @@ The metrics used to evaluate the model were:
 - **Average Intersection over Union (Average IoU)**: 0.60
 - **Average Recall (AR):** 0.53
 - **Mean Average Precision (mAP):** 0.45
+
+Example of model's prediction:
+<p>
+     <img src="images/ModelPrediction1.png" width="40%" />
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+     <img src="images/modelPrediction2.png" width="40%" />
+</p>
 
 ### ❌ Results Problem
 - **High False Negative Number:** "The reasons why the model may fail to detect objects within the images could include: low visibility, objects being too small, partially cropped, or poorly distinguishable due to the surrounding context.
